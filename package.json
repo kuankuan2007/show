@@ -1,0 +1,24 @@
+{
+  "name": "show",
+  "version": "0.1.0",
+  "description": "Some display code or scattered code files",
+  "main": "cannotRun.mjs",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuankuan2007/show.git"
+  },
+  "keywords": [
+    "show"
+  ],
+  "author": "kuankuan",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/kuankuan2007/show/issues"
+  },
+  "homepage": "https://github.com/kuankuan2007/show#readme",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^22.13.4"
+  }
+}

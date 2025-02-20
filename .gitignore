@@ -1,0 +1,4 @@
+.VSCodeCounter
+node_modules
+./test/dist
+./dist/
