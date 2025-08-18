@@ -2,8 +2,7 @@ import requests
 from pathlib import Path
 import json
 from typing import TypedDict
-from concurrent.futures import ThreadPoolExecutor, Future
-import time
+from concurrent.futures import ThreadPoolExecutor, Future, wait
 import hashlib
 
 Assest = TypedDict(
@@ -102,14 +101,6 @@ for i in datas:
     for j in i["assets"]:
         flist.append(pool.submit(syncAssets, now / j["name"], j))
 
-while True:
-    time.sleep(0.5)
-    while logs:
-        print(logs.pop(0))
-    for i in [i for i in flist]:
-        if i.done():
-            flist.remove(i)
-    if not flist:
-        break
+wait(flist, return_when="ALL_COMPLETED")
 pool.shutdown()
 print("Done")
