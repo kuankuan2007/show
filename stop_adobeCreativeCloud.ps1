@@ -1,14 +1,38 @@
 # Adobe Creative Cloud 进程终止脚本
-# 用于结束所有以 "Creative Cloud" 开头的进程
+# 用于结束所有Creative Cloud的进程
 
+function Test-Administrator {
+    $currentUser = [Security.Principal.WindowsIdentity]::GetCurrent()
+    $principal = New-Object Security.Principal.WindowsPrincipal($currentUser)
+    return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
+}
+
+if (-NOT (Test-Administrator)) {
+    Write-Host "检测到当前没有管理员权限" -ForegroundColor Yellow
+    Write-Host "按下任意键以管理员权限重新启动脚本..." -ForegroundColor Gray
+
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+
+    $psExecutable = if ($PSVersionTable.PSVersion.Major -ge 6) { "pwsh" } else { "powershell" }
+
+    $scriptPath = $MyInvocation.MyCommand.Path
+
+    Start-Process $psExecutable -Verb RunAs -ArgumentList "-ExecutionPolicy Bypass -File `"$scriptPath`""
+
+    exit
+}
 Write-Host "正在搜索 Creative Cloud 相关进程..." -ForegroundColor Yellow
 
-# 获取所有以 "Creative Cloud" 开头的进程
+
 $creativeCloudProcesses = Get-Process | Where-Object { $_.ProcessName -like "Creative Cloud*" -or $_.MainWindowTitle -like "Creative Cloud*" -or $_.ProcessName -like "Adobe*" -or $_.ProcessName -like "CCLibrary*" -or $_.ProcessName -like "CCLibraryUI*" -or $_.ProcessName -like "CCXProcess*" }
 
 if ($creativeCloudProcesses.Count -eq 0) {
     Write-Host "未找到任何 Creative Cloud 相关进程。" -ForegroundColor Green
-    exit 0
+
+    Write-Host "`n按任意键退出..." -ForegroundColor Gray
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+
+    exit
 }
 
 Write-Host "找到以下 Creative Cloud 进程：" -ForegroundColor Cyan
