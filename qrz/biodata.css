@@ -1,0 +1,116 @@
+#csbody {
+    color: black;
+}
+
+#calldata {
+    color: black;
+}
+
+#biodata {
+    color: black;
+    position: relative;
+}
+
+#biodata a {
+    text-decoration: none;
+    transition: 0.3s 0s, background-position 0s 0s;
+    background-position: right bottom;
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    color: #0006c1;
+    background-image: linear-gradient(90deg, #0006c1, #0006c1);
+}
+
+#biodata a:hover, #biodata a:focus, #biodata a:active {
+    background-size: 100% 2px;
+    background-position: left bottom;
+}
+
+#biodata details summary {
+    font-size: 0.8em;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+#biodata details[open] summary {
+    font-size: 1em;
+    cursor: pointer;
+    opacity: 1;
+}
+
+#biodata details #email-template-list {
+    padding-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    font-size: 0.8em;
+}
+
+@media (max-width: 40em) {
+    #biodata details #email-template-list {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5em;
+    }
+}
+
+#biodata details #email-template-list div.email-template {
+    white-space: pre-wrap;
+    background-color: #e5dddd73;
+    backdrop-filter: blur(2px);
+    padding: 0.5em;
+    margin: 0;
+    border-radius: 0.5em;
+    border: 1px solid #dcdcdc;
+    font-family: sans-serif;
+}
+
+#biodata details #email-template-list div.email-template span.field {
+    font-weight: bold;
+    opacity: 0.6;
+}
+
+#biodata details #email-template-list div.email-template span.optional {
+    font-style: italic;
+    opacity: 0.8;
+}
+
+#biodata details #email-template-list div.email-template div.subject {
+    font-weight: bold;
+}
+
+#biodata #sign {
+    text-align: center;
+    margin: 0;
+    padding: 1em;
+    border-radius: 1em;
+    background: #dadaff66;
+    backdrop-filter: blur(2px);
+    border: 1px solid #cfcadd;
+    color: #393939;
+    font-style: italic;
+    font-family: cursive;
+}
+
+#biodata #sign p {
+    padding: 0;
+    margin: 0.5em 0;
+}
+
+#biodata #background #bg-furry {
+    opacity: 0.1;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    object-fit: contain;
+    object-position: right bottom;
+    position: absolute;
+    pointer-events: none;
+    display: block;
+    z-index: -1;
+}
+
+#t_bio.biodiv {
+    background-color: unset;
+}
