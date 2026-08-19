@@ -27,15 +27,13 @@
 }
 
 #biodata details summary {
-    font-size: 0.8em;
     cursor: pointer;
-    opacity: 0.6;
+    color: #000479;
 }
 
 #biodata details[open] summary {
-    font-size: 1em;
     cursor: pointer;
-    opacity: 1;
+    color: unset;
 }
 
 #biodata details #email-template-list {
@@ -53,8 +51,16 @@
         gap: 0.5em;
     }
 }
-
-#biodata details #email-template-list div.email-template {
+#biodata details #email-template-list div.email-template{
+    display: flex;
+    flex-direction: column;
+}
+#biodata details #email-template-list div.email-template a.click-to-send{
+    display: block;
+    font-size: 1.2em;
+}
+#biodata details #email-template-list div.email-template div.email-template-content {
+    flex: 1 0 auto;
     white-space: pre-wrap;
     background-color: #e5dddd73;
     backdrop-filter: blur(2px);
@@ -62,20 +68,19 @@
     margin: 0;
     border-radius: 0.5em;
     border: 1px solid #dcdcdc;
-    font-family: sans-serif;
 }
 
-#biodata details #email-template-list div.email-template span.field {
+#biodata details #email-template-list div.email-template-content span.field {
     font-weight: bold;
     opacity: 0.6;
 }
 
-#biodata details #email-template-list div.email-template span.optional {
+#biodata details #email-template-list div.email-template-content span.optional {
     font-style: italic;
     opacity: 0.8;
 }
 
-#biodata details #email-template-list div.email-template div.subject {
+#biodata details #email-template-list div.email-template-content div.subject {
     font-weight: bold;
 }
 
@@ -90,11 +95,23 @@
     color: #393939;
     font-style: italic;
     font-family: cursive;
+    position: relative;
 }
 
 #biodata #sign p {
     padding: 0;
     margin: 0.5em 0;
+}
+
+#biodata #sign .sign-icon {
+    font-size: 3em;
+    position: absolute;
+    bottom: 0.2em;
+    right: 0.2em;
+    user-select: none;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
 }
 
 #biodata #background #bg-furry {
@@ -108,9 +125,4 @@
     position: absolute;
     pointer-events: none;
     display: block;
-    z-index: -1;
-}
-
-#t_bio.biodiv {
-    background-color: unset;
 }
